@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: base-frontend-template
+    labels: &labels
+        app.kubernetes.io/name: base-frontend-template
+spec:
+    selector:
+        matchLabels: *labels
+    template:
+        metadata:
+            labels: *labels
+        spec:
+            containers:
+                - name: base-frontend-template
+                  image: ghcr.io/viva-con-agua/base-frontend-template
+                  imagePullPolicy: Always
+                  envFrom:
+                      - configMapRef:
+                            name: base-frontend-template-config
+                  ports:
+                      - name: http
+                        containerPort: 80
+                  readinessProbe:
+                      httpGet:
+                          port: http
+                  livenessProbe:
+                      httpGet:
+                          port: http
+                  resources:
+                      limits:
+                          memory: 100Mi
+                          cpu: 10m # 10 milli-cores = 1% of a core
