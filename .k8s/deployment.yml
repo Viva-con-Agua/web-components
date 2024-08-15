@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: base-frontend-template
+    name: web-components
     labels: &labels
-        app.kubernetes.io/name: base-frontend-template
+        app.kubernetes.io/name: web-components
 spec:
     selector:
         matchLabels: *labels
@@ -12,12 +12,12 @@ spec:
             labels: *labels
         spec:
             containers:
-                - name: base-frontend-template
-                  image: ghcr.io/viva-con-agua/base-frontend-template
+                - name: web-components
+                  image: ghcr.io/viva-con-agua/web-components
                   imagePullPolicy: Always
                   envFrom:
                       - configMapRef:
-                            name: base-frontend-template-config
+                            name: web-components
                   ports:
                       - name: http
                         containerPort: 80

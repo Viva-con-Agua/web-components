@@ -11,7 +11,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 export default defineConfig({
     base: '/',
     plugins: [
-        vue(),
+        vue({ customElement: true }),
         vueI18n({
             include: resolve(__dirname, './src/locales/**'),
             runtimeOnly: true,
