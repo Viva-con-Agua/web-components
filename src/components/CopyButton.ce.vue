@@ -77,7 +77,7 @@
         &:not(.Button--isLoading):not(.Button--disabled) {
             &:hover,
             &:active {
-                background: $primary-dark;
+                transform: scale(1.2);
             }
         }
     }
