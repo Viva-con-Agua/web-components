@@ -1,109 +1,56 @@
-# Vue 3 + i18n + Typescript + Vite + Storybook + TailwindCSS + ESLint + Prettier
+# Viva con Agua web components
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Contains various web components that are used on the Viva con Agua website.
 
-## Create stories with Typescript
+## Initial
 
-You can write stories with JavaScript or Typescript alike as both your dev server and storybook server allow it. Start writing stories with [this introduction](https://storybook.js.org/docs/react/writing-stories/introduction)
-
-## Add translations to locales files
-
-Translations are ready to go with [vue-i18](https://vue-i18n.intlify.dev/) Add your files to `/locales` and are you are set.
-
-## ESLint
-
-Change your config at `.eslintrc.js`
-
-## Prettier
-
-Change config at `.prettierrc`
-
-## Scripts
-
-```js
-npm install // installs packages
-npm run vite // starts the dev server
-npm run tailwind // starts the tailwind config preview server
-npm run build // run build
-npm run dev // preview build
-npm run serve // preview build
-npm run storybook // starts storybook
-npm run lint // lint and fix all files
-npm run format // run prettier on all files
-```
-
-## (Local) Deployment
-
-Copy example.env to .env and set version and IPs (for local nginx)
-
-```make
-make build // build docker
-make build-dev // build development docker
-make build-storybook // build storybook docker
-make serve-dev // serve development docker on given IP in .env
-make serve-storybook // serve development docker on given IP in .env
-```
-
-## Recommended IDE Setup
-
--   [VSCode](https://code.visualstudio.com/) + [volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
-
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-## Folder structure
+The components only need to be installed in the head of the page. They can then be used on the entire page.
 
 ```
-.
-├── LICENSE
-├── README.md
-├── index.html
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── robots.txt
-├── src
-│   ├── App.vue
-│   ├── assets
-│   │   └── fonts
-│   ├── components
-│   ├── data
-│   ├── locales
-│   ├── views
-│   ├── router.js
-│   ├── i18n.js
-│   ├── main.ts
-│   ├── shims-vue.d.ts
-│   ├── stories
-│   │   ├── BasicButton.stories.ts
-│   │   ├── BasicButton.vue
-│   │   ├── Header.stories.js
-│   │   ├── Header.vue
-│   │   ├── Introduction.stories.mdx
-│   │   ├── Page.stories.js
-│   │   ├── Page.vue
-│   │   ├── assets
-│   │   │   ├── code-brackets.svg
-│   │   │   ├── colors.svg
-│   │   │   ├── comments.svg
-│   │   │   ├── direction.svg
-│   │   │   ├── flow.svg
-│   │   │   ├── plugin.svg
-│   │   │   ├── repo.svg
-│   │   │   └── stackalt.svg
-│   │   ├── header.css
-│   │   └── page.css
-│   ├── styles
-│   │   ├── _colors.scss
-│   │   ├── _font.scss
-│   │   ├── _reset.scss
-│   │   ├── boot.scss
-│   │   └── functions
-│   │       └── _color.scss
-│   └── types
-│       └── Size.ts
-├── tsconfig.json
-├── vite.config.ts
-└── yarn.lock
+    <head>
+      ...
+      <script type="module" crossorigin src="https://components.vivaconagua.org/assets/index.js"></script>
+      ...
+    </head>
+```
+
+## Develop
+
+First create a normal component under `src/components`. The file should have the extension `.ce.vue`. Then the components must be defined in `src/main.ts` as `customElement`.
+
+```
+import copyButton from './components/CopyButton.ce.vue';
+const copyButtonComponent = defineCustomElement(copyButton);
+
+customElements.define('copy-button', copyButtonComponent);
+```
+
+You can run a Docker to run the components in your localhost.
+
+```
+docker compose up -d --build
+```
+
+The service can be reached at [http://localhost:8020](http://localhost:8020) and can be integrated with:
+
+```
+ <script type="module" src="http://localhost:8020/assets/index.js"></script>
+```
+
+## Components
+
+### CopyButton
+
+Copies the value in `copy_value` to the clipboard.
+
+```
+        <!--
+            label: Default button label.
+            copy_label: Label after copy the copy_value.
+            copy_value: Value what is copied.
+            countdown: Seconds until the button resets. Default 5 sec.
+            color: Button color, `orange`, `dark` and `default`
+        -->
+        <copy-button label="test" copy_label="Kopiert!" copy_value="blabla" countdown="5">
+        </copy-button>
 ```
