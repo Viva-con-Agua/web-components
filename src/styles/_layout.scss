@@ -1,0 +1,51 @@
+/*
+    CSS Positioning
+*/
+
+.align-right,
+.align-left,
+.align-center {
+    display: flex;
+    width: auto;
+}
+
+.align-left,
+.align-right {
+    flex-basis: 50%;
+}
+
+.align-right {
+    justify-content: flex-end;
+}
+
+.align-left {
+    justify-content: flex-start;
+}
+
+.align-center {
+    justify-content: center;
+}
+.vertical-center {
+    margin: auto 5px;
+}
+
+.main-border {
+    padding: 10px;
+    border: solid thin $main-color;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.editable {
+    cursor: pointer;
+}

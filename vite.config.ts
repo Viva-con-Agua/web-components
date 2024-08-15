@@ -5,6 +5,7 @@ import { resolve } from 'path';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import eslintPlugin from 'vite-plugin-eslint';
+import pluginPurgeCss from '@mojojoejo/vite-plugin-purgecss';
 //import runtimeConfig from 'vite-plugin-runtime-config';
 
 // https://vitejs.dev/config/
@@ -18,6 +19,7 @@ export default defineConfig({
             compositionOnly: true,
         }),
         eslintPlugin(),
+        pluginPurgeCss(),
         //runtimeConfig(),
     ],
     resolve: {
@@ -26,6 +28,13 @@ export default defineConfig({
         },
     },
     envPrefix: 'VCA_PUBLIC_',
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/[name].js`,
+            },
+        },
+    },
     test: {
         globals: true,
         environment: 'jsdom',

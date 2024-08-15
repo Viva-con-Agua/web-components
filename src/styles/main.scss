@@ -1,0 +1,62 @@
+@import 'reset.scss';
+@import 'index.scss';
+
+@font-face {
+    font-family: 'veneer';
+    src: url('../assets/fonts/Veneer.woff2') format('woff2'),
+        url('../assets/fonts/Veneer.woff') format('woff'),
+        url('../assets/fonts/Veneer.svg#svgFontName') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../assets/fonts/RobotoSlab-VariableFont_wght.woff2') format('woff2'),
+        url('../assets/fonts/RobotoSlab-VariableFont_wght.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    /* Adjust font size */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    /* Font variant */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+}
+
+textarea,
+input,
+select {
+    @include fontStyleBodytext();
+    font-weight: 400;
+    font-size: 16px;
+    outline: none;
+
+    border: 1px solid $blue-dark;
+    border-radius: 0;
+}
+
+optgroup,
+option {
+    @include fontStyleBodytext();
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+    color: inherit;
+
+    &:hover {
+        color: $main-color;
+    }
+}
