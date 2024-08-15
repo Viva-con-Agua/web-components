@@ -36,6 +36,3 @@
         }
     );
 </script>
-<style>
-    @import '@vivaconagua/vueca/dist/style.css';
-</style>
