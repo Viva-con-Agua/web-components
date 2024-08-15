@@ -2,7 +2,7 @@ name: container_image
 on:
     push:
         branches:
-            - develop
+            - main
 
 jobs:
     branch_name:
