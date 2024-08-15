@@ -24,3 +24,9 @@ export interface Money {
     amount: number;
     currency: string;
 }
+
+export enum ColorType {
+    default = 'default',
+    dark = 'dark',
+    orange = 'orange',
+}

@@ -1,21 +1,23 @@
 <template>
-    <Button @click="submit">{{ labelShow }}</Button>
+    <Button :class="css" @click="submit">{{ labelShow }}</Button>
 </template>
 <script setup lang="ts">
+    import { ColorType } from '@/types/Default';
     import { Button } from '@vivaconagua/vueca';
-    import { ref, watch } from 'vue';
+    import { computed, ref, watch } from 'vue';
     const props = defineProps<{
         label: string;
         copy_label: string;
         copy_value: string;
-        countdown: number;
+        countdown: number | undefined;
+        color: string | undefined;
     }>();
     const labelShow = ref();
     labelShow.value = props.label;
     const submit = () => {
         navigator.clipboard.writeText(props.copy_value);
         labelShow.value = props.copy_label;
-        timer.value = props.countdown;
+        timer.value = props.countdown ? props.countdown : 5;
         const interval = setInterval(() => {
             if (timer.value == 0) {
                 clearInterval(interval);
@@ -36,6 +38,20 @@
             }
         }
     );
+    const css = computed(() => {
+        if (props.color != undefined) {
+            if (props.color == ColorType.default) {
+                return '';
+            }
+            if (props.color == ColorType.orange) {
+                return 'bg-orange';
+            }
+            if (props.color == ColorType.dark) {
+                return 'bg-dark';
+            }
+        }
+        return '';
+    });
 </script>
 <style lang="scss">
     @import '../styles/';
@@ -80,6 +96,12 @@
                 transform: scale(1.2);
             }
         }
+    }
+    .bg-orange {
+        background-color: $arts-primary;
+    }
+    .bg-dark {
+        background-color: $primary-dark;
     }
     .Button__label {
         position: relative;
