@@ -15,9 +15,6 @@ spec:
                 - name: web-components
                   image: ghcr.io/viva-con-agua/web-components
                   imagePullPolicy: Always
-                  envFrom:
-                      - configMapRef:
-                            name: web-components
                   ports:
                       - name: http
                         containerPort: 80

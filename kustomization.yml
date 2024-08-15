@@ -5,6 +5,3 @@ commonLabels:
 resources:
     - .k8s/deployment.yml
     - .k8s/service.yml
-
-configMapGenerator:
-    - name: web-components
