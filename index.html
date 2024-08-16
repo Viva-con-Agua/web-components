@@ -10,14 +10,37 @@
     <body>
         <h1>VcA Web Components</h1>
         <h2>Copy Button</h2>
+        <!--
+            label: Default button label.
+            copy_label: Label after copy the copy_value.
+            copy_value: Value what is copied.
+            countdown: Seconds until the button resets. Default 5 sec.
+            color: Button color, `orange`, `dark` and `default`
+        -->
         <copy-button label="Kopieren" copy_label="Kopiert!" copy_value="blabla" countdown="5">
         </copy-button>
         <pre>
             <code class="html">
             &lt;copy-button label=&quot;Kopieren&quot; copy_label=&quot;Kopiert!&quot; copy_value=&quot;blabla&quot; countdown=&quot;5&quot;&gt; &lt;/copy-button&gt;
-
-</code>
-</pre>
+            </code>
+        </pre>
+        <h2>Link Button</h2>
+        <!--
+            label: Default button label.
+            to: Path or Link.
+            utm_campaign: Campaign name for tracking.
+            utm_medium: Tracking parameter.
+            utm_source: Tracking parameter.
+            color: Button color, `orange`, `dark` and `default`
+        -->
+        <link-button
+            label="Jetzt Spenden!"
+            to="https://vivaconagua.org/spende/"
+            utm_campaign="dev"
+            utm_source="localhost"
+            utm_medium="button"
+            color="orange">
+        </link-button>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>
