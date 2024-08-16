@@ -51,6 +51,33 @@ Copies the value in `copy_value` to the clipboard.
             countdown: Seconds until the button resets. Default 5 sec.
             color: Button color, `orange`, `dark` and `default`
         -->
-        <copy-button label="test" copy_label="Kopiert!" copy_value="blabla" countdown="5">
+        <copy-button 
+          label="test" 
+          copy_label="Kopiert!" 
+          copy_value="blabla" 
+          countdown="5">
         </copy-button>
+```
+
+### LinkButton
+
+Simple linking. The campaign information is automatically attached.
+
+```
+        <!--
+            label: Default button label.
+            to: Path or Link.
+            utm_campaign: Campaign name for tracking.
+            utm_medium: Tracking parameter.
+            utm_source: Tracking parameter.
+            color: Button color, `orange`, `dark` and `default` 
+        -->
+        <link-button 
+            label="Jetzt Spenden!" 
+            to="https://vivaconagua.org/spende/" 
+            utm_campaign="dev" 
+            utm_source="localhost" 
+            utm_medium="button" 
+            color="orange">
+        </link-button>
 ```
