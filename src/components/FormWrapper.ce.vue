@@ -26,6 +26,10 @@
                 const top = iframeElement.value ? iframeElement.value.offsetTop : 0;
                 window.scrollTo(0, top);
             }
+            if (event.data.event === 'tracking-trigger') {
+                window.dataLayer?.push(event.data.data);
+                window._mtm.push(event.data.data);
+            }
         }
     };
     const iframeHeight = computed(() => {
