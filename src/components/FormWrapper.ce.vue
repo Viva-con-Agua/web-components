@@ -26,8 +26,7 @@
                 const top = iframeElement.value ? iframeElement.value.offsetTop : 0;
                 window.scrollTo(0, top);
             }
-            if (event.data.event === 'tracking-trigger') {
-                console.log(event.data);
+            if (event.data.event === 'tracking-trigger' || event.data.event === 'gtm-trigger') {
                 window.dataLayer?.push(event.data.data);
                 if (event.data.data.category === undefined) {
                     event.data.data.category =
