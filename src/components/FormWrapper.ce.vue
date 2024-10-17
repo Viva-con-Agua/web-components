@@ -27,8 +27,25 @@
                 window.scrollTo(0, top);
             }
             if (event.data.event === 'tracking-trigger') {
+                console.log(event.data);
                 window.dataLayer?.push(event.data.data);
-                window._mtm.push(event.data.data);
+                if (event.data.data.category === undefined) {
+                    event.data.data.category =
+                        'donation ' + event.data.data.donation_customer_type
+                            ? event.data.data.donation_customer_type
+                            : '';
+                    event.data.data.action =
+                        event.data.data.donation_value +
+                        ' ' +
+                        event.data.data.currency +
+                        ' ' +
+                        event.data.data.donation_interval +
+                        ' ' +
+                        event.data.data.donation_per_year;
+                    event.data.data.name = event.data.data.event;
+                    event.data.data.value = event.data.data.yearly_donation_value;
+                }
+                window._mtm?.push(event.data.data);
             }
         }
     };
