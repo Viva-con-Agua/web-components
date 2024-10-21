@@ -5,7 +5,7 @@
         ref="iframeElement"
         :src="props.src"
         style="width: 100%; border: none"
-        :style="iframeHeight"></iframe>
+        :style="[iframeHeight, bordered]"></iframe>
 </template>
 <script setup lang="ts">
     import { computed } from 'vue';
@@ -15,6 +15,7 @@
 
     const props = defineProps<{
         src: string;
+        bordered: boolean | undefined;
     }>();
     const height = ref('0px');
     const iframeElement: Ref<HTMLIFrameElement | null> = ref(null);
@@ -58,6 +59,12 @@
     };
     const iframeHeight = computed(() => {
         return 'height: ' + height.value;
+    });
+    const bordered = computed(() => {
+        if (props.bordered) {
+            return 'width: 99%; border: 4px solid #ff6900;';
+        }
+        return '';
     });
     onBeforeMount(() => {
         parent.addEventListener('message', handleIframeMessage, false);
