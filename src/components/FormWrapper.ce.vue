@@ -1,5 +1,6 @@
 <template>
     <iframe
+        @load="messageThatIframeIsLoaded"
         id="iframeElement"
         ref="iframeElement"
         :src="props.src"
@@ -46,6 +47,13 @@
                 }
                 window._mtm?.push(event.data.data);
             }
+        }
+    };
+    const messageThatIframeIsLoaded = () => {
+        // eslint-disable-next-line
+        console.log('Iframe on load');
+        if (iframeElement.value) {
+            iframeElement.value.contentWindow?.postMessage({ type: 'iframe-loaded' }, '*');
         }
     };
     const iframeHeight = computed(() => {
