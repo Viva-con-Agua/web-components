@@ -1,11 +1,9 @@
-/// <reference types="vitest" />
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import eslintPlugin from 'vite-plugin-eslint';
-import pluginPurgeCss from '@mojojoejo/vite-plugin-purgecss';
 //import runtimeConfig from 'vite-plugin-runtime-config';
 
 // https://vitejs.dev/config/
@@ -19,7 +17,6 @@ export default defineConfig({
             compositionOnly: true,
         }),
         eslintPlugin(),
-        pluginPurgeCss(),
         //runtimeConfig(),
     ],
     resolve: {
@@ -33,16 +30,6 @@ export default defineConfig({
             output: {
                 entryFileNames: `assets/[name].js`,
             },
-        },
-    },
-    test: {
-        globals: true,
-        environment: 'jsdom',
-        setupFiles: [
-            './vitest.setup.ts', //setupfile for vitest
-        ],
-        deps: {
-            inline: ['@vue', '@vueuse'],
         },
     },
     server: { port: 8080 },

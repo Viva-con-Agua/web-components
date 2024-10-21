@@ -5,15 +5,7 @@ module.exports = {
         es2021: true,
         'vue/setup-compiler-macros': true,
     },
-    extends: [
-        'eslint:recommended',
-        '@vue/prettier',
-        '@vue/typescript/recommended',
-        'plugin:vue/vue3-essential',
-        'plugin:storybook/recommended',
-        'plugin:markdown/recommended',
-        'plugin:storybook/recommended',
-    ],
+    extends: ['eslint:recommended', '@vue/prettier', '@vue/typescript/recommended', 'plugin:vue/vue3-essential', 'plugin:storybook/recommended', 'plugin:markdown/recommended', 'plugin:storybook/recommended', 'plugin:storybook/recommended'],
     parserOptions: {
         ecmaVersion: 2020,
     },

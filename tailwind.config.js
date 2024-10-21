@@ -128,8 +128,5 @@ module.exports = {
             },
             zIndex: { 100: '100', 200: '200' },
         },
-    },
-    plugins: [
-        require('@tailwindcss/typography'), // typography
-    ],
+    }
 };
