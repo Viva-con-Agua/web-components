@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: web-components
+    name: web-components-storybook
     labels: &labels
         app.kubernetes.io/name: web-components-storybook
         app.kubernetes.io/component: component-explorer
