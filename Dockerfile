@@ -1,8 +1,9 @@
 FROM docker.io/node:20-alpine as build-develop
 WORKDIR /app/src
 ADD ./ /app/src/
-RUN npm clean-install
-RUN npm run build-develop
+RUN yarn install --check-files
+RUN yarn run build-main
+
 
 # develop nginx container
 FROM docker.io/nginx:mainline as develop
@@ -13,8 +14,9 @@ EXPOSE 80/tcp
 FROM docker.io/node:20-alpine as build-stage
 WORKDIR /app/src
 ADD ./ /app/src/
-RUN npm clean-install
-RUN npm run build-stage
+RUN yarn install --check-files
+RUN yarn run build-main
+
 
 FROM docker.io/nginx:mainline as stage
 ADD .docker/nginx.conf /etc/nginx/conf.d/default.conf
@@ -24,8 +26,8 @@ EXPOSE 80/tcp
 FROM docker.io/node:20-alpine as build-main
 WORKDIR /app/src
 ADD ./ /app/src/
-RUN npm clean-install
-RUN npm run build-main
+RUN yarn install --check-files
+RUN yarn run build-main
 
 FROM docker.io/nginx:mainline as main
 ADD .docker/nginx.conf /etc/nginx/conf.d/default.conf
