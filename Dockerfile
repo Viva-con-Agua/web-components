@@ -47,4 +47,4 @@ RUN yarn run build-storybook --disable-telemetry -o /app/dist/
 FROM docker.io/nginx:mainline as storybook-http
 ADD .docker/storybook.nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80/tcp
-COPY --from=storybook /app/storybook-static/ /var/www/
+COPY --from=storybook /app/dist/ /var/www/
