@@ -9,9 +9,10 @@
         label: string;
         copy_label: string;
         copy_value: string;
-        countdown: number | undefined;
-        color: string | undefined;
+        countdown?: number | undefined;
+        color?: string | undefined;
     }>();
+    defineExpose();
     const labelShow = ref();
     labelShow.value = props.label;
     const submit = () => {
@@ -39,18 +40,14 @@
         }
     );
     const css = computed(() => {
-        if (props.color != undefined) {
-            if (props.color == ColorType.default) {
-                return '';
-            }
-            if (props.color == ColorType.orange) {
+        switch (props.color) {
+            case ColorType.orange:
                 return 'bg-orange';
-            }
-            if (props.color == ColorType.dark) {
+            case ColorType.dark:
                 return 'bg-dark';
-            }
+            default:
+                return '';
         }
-        return '';
     });
 </script>
 <style lang="scss">

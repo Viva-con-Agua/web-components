@@ -20,7 +20,7 @@
             "@/*": ["src/*"]
         },
         "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-                "jsx": "preserve",
+        "jsx": "preserve",
         "noImplicitAny": true,
         "allowJs": true
     },
