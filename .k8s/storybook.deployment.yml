@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: web-components-storybook
+    name: web-components
     labels: &labels
         app.kubernetes.io/name: web-components-storybook
         app.kubernetes.io/component: component-explorer
@@ -13,7 +13,7 @@ spec:
             labels: *labels
         spec:
             containers:
-                - name: vueca-storybook
+                - name: web-components-storybook
                   image: ghcr.io/viva-con-agua/web-components-storybook
                   imagePullPolicy: Always
                   ports:
