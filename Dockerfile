@@ -42,7 +42,6 @@ ADD ./ /app/src/
 RUN npm install --frozen-lockfile --non-interactive
 
 FROM src as storybook
-ADD .env.develop /app/src/.env
 RUN yarn run build-storybook --disable-telemetry -o /app/dist/
 
 FROM docker.io/nginx:mainline as storybook-http
