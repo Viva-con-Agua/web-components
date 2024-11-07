@@ -39,7 +39,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 ENV GENERATE_SOURCEMAP=false
 WORKDIR /app/src
 ADD ./ /app/src/
-RUN npm install --frozen-lockfile --non-interactive
+RUN yarn install --check-files
 
 FROM src as storybook
 RUN yarn run build-storybook --disable-telemetry -o /app/dist/
