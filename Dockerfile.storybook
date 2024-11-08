@@ -1,5 +1,5 @@
 # Schritt 1: Baue das Storybook-Projekt
-FROM node:20-alpine AS build
+FROM node:20-alpine AS storybook
 
 # Setze das Arbeitsverzeichnis auf /app
 WORKDIR /app
@@ -15,10 +15,10 @@ COPY . .
 RUN yarn build-storybook
 
 # Schritt 2: Nginx verwenden, um die statischen Dateien bereitzustellen
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine as storybook-http
 
 # Kopiere den Storybook-Build von Schritt 1 in das Nginx-Standardverzeichnis
-COPY --from=build /app/storybook-static /usr/share/nginx/html
+COPY --from=storybook /app/storybook-static /usr/share/nginx/html
 
 # Exponiere Port 80 für Nginx
 EXPOSE 80

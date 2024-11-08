@@ -10,7 +10,7 @@ jobs:
         uses: Viva-con-Agua/workflows/.github/workflows/build_image.yml@main
         with:
             image_name_suffix: storybook
-            build_target: storybook
+            build_target: storybook-http
     deploy-storybook:
         needs: [build-storybook-container]
         uses: Viva-con-Agua/workflows/.github/workflows/deploy.yml@main

@@ -66,7 +66,7 @@ COPY . .
 RUN yarn build-storybook
 
 # Schritt 2: Nginx verwenden, um die statischen Dateien bereitzustellen
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine as storybook-http
 
 # Kopiere den Storybook-Build von Schritt 1 in das Nginx-Standardverzeichnis
 COPY --from=storybook /app/storybook-static /usr/share/nginx/html
