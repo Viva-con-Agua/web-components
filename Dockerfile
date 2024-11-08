@@ -72,7 +72,7 @@ FROM nginx:stable-alpine as storybook-http
 COPY --from=build /app/storybook-static /var/www/html
 
 # Kopiere die benutzerdefinierte Nginx-Konfiguration
-COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
+ADD .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponiere Port 80 für Nginx
 EXPOSE 80
