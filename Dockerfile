@@ -68,8 +68,11 @@ RUN yarn build-storybook
 # Schritt 2: Nginx verwenden, um die statischen Dateien bereitzustellen
 FROM nginx:stable-alpine as storybook-http
 
-# Kopiere den Storybook-Build von Schritt 1 in das Nginx-Standardverzeichnis
-COPY --from=storybook /app/storybook-static /usr/share/nginx/html
+# Kopiere die statischen Dateien in /var/www/html
+COPY --from=build /app/storybook-static /var/www/html
+
+# Kopiere die benutzerdefinierte Nginx-Konfiguration
+COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponiere Port 80 für Nginx
 EXPOSE 80
