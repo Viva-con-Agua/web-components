@@ -69,7 +69,7 @@ RUN yarn build-storybook
 FROM nginx:stable-alpine
 
 # Kopiere den Storybook-Build von Schritt 1 in das Nginx-Standardverzeichnis
-COPY --from=build /app/storybook-static /usr/share/nginx/html
+COPY --from=storybook /app/storybook-static /usr/share/nginx/html
 
 # Exponiere Port 80 für Nginx
 EXPOSE 80
