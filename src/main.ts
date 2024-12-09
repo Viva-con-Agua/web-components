@@ -1,7 +1,7 @@
 import { defineCustomElement } from 'vue';
-import copyButton from './components/CopyButton.ce.vue';
-import linkButton from './components/LinkButton.ce.vue';
-import formWrapper from './components/FormWrapper.ce.vue';
+import copyButton from './components/CopyButton.vue';
+import linkButton from './components/LinkButton.vue';
+import formWrapper from './components/FormWrapper.vue';
 const copyButtonComponent = defineCustomElement(copyButton);
 const linkButtonComponent = defineCustomElement(linkButton);
 const formWrapperComponent = defineCustomElement(formWrapper);

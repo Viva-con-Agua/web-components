@@ -15,13 +15,15 @@
         "resolveJsonModule": true,
         "sourceMap": true,
         "baseUrl": "./",
-        "types": ["vite/client", "@intlify/vite-plugin-vue-i18n/client", "vitest/globals"],
+        "types": ["vite/client", "@intlify/vite-plugin-vue-i18n/client", "node"],
         "paths": {
             "@/*": ["src/*"]
         },
         "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-        "jsx": "react-jsx"
+        "jsx": "preserve",
+        "noImplicitAny": true,
+        "allowJs": true
     },
-    "include": ["vite.config.*", "src/**/*", "src/**/*.vue"],
+    "include": ["vite.config.*", "src/vue-i18n", "src/**/*", "src/**/*.vue"],
     "exclude": ["node_modules", "**/*.stories.ts"]
 }

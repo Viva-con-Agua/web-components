@@ -13,6 +13,7 @@ module.exports = {
         'plugin:storybook/recommended',
         'plugin:markdown/recommended',
         'plugin:storybook/recommended',
+        'plugin:storybook/recommended',
     ],
     parserOptions: {
         ecmaVersion: 2020,

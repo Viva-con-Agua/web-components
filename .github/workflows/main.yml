@@ -27,5 +27,5 @@ jobs:
               with:
                   node-version: 20
                   cache: npm
-            - run: npm install --frozen-lockfile --non-interactive
-            - run: npm run build
+            - run: yarn install --frozen-lockfile --non-interactive
+            - run: yarn run build

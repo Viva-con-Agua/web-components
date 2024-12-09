@@ -1,13 +1,27 @@
-FROM node:20
-#FROM node:10
+# Schritt 1: Baue das Storybook-Projekt
+FROM node:20-alpine AS storybook
 
-# make the 'app' folder the current working directory
-WORKDIR /usr/src/app
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY package.json ./
-RUN npm install
+# Setze das Arbeitsverzeichnis auf /app
+WORKDIR /app
 
-# install project dependencies
+# Kopiere package.json und yarn.lock
+COPY package.json yarn.lock ./
 
+# Installiere die Abhängigkeiten mit Yarn
+RUN yarn install
+
+# Kopiere den Rest des Projekts und baue Storybook
+COPY . .
+RUN yarn build-storybook
+
+# Schritt 2: Nginx verwenden, um die statischen Dateien bereitzustellen
+FROM nginx:stable-alpine as storybook-http
+
+# Kopiere den Storybook-Build von Schritt 1 in das Nginx-Standardverzeichnis
+COPY --from=storybook /app/storybook-static /usr/share/nginx/html
+
+# Exponiere Port 80 für Nginx
 EXPOSE 80
-CMD ["npm", "run", "storybook_docker"]
+
+# Startet Nginx im Vordergrund
+CMD ["nginx", "-g", "daemon off;"]
