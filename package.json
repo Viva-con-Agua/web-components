@@ -26,6 +26,7 @@
         "build-main": "vue-tsc --noEmit && vite build --mode main"
     },
     "dependencies": {
+        "@geometricpanda/storybook-addon-iframe": "^0.2.2",
         "@kyvg/vue3-notification": "^3.3.0",
         "@storybook/addons": "^7.6.17",
         "@storybook/api": "^7.6.17",

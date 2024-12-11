@@ -17,7 +17,7 @@
         src: string;
         bordered: boolean | undefined;
     }>();
-    const height = ref('0px');
+    const height = ref('1000px');
     const iframeElement: Ref<HTMLIFrameElement | null> = ref(null);
     const handleIframeMessage = (event: any) => {
         if (event.source === iframeElement.value?.contentWindow) {
