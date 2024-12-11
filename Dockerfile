@@ -34,20 +34,6 @@ ADD .docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-main /app/src/dist/ /var/www/
 EXPOSE 80/tcp
 
-#FROM docker.io/node:20-alpine AS src
-#ENV NODE_OPTIONS=--openssl-legacy-provider
-#ENV GENERATE_SOURCEMAP=false
-#WORKDIR /app/src
-#ADD ./ /app/src/
-#RUN yarn install --check-files
-
-#FROM src as storybook
-#RUN yarn run build-storybook --disable-telemetry -o /app/dist/
-
-#FROM docker.io/nginx:mainline as storybook-http
-#ADD .docker/storybook.nginx.conf /etc/nginx/conf.d/default.conf
-#EXPOSE 80/tcp
-#COPY --from=storybook /app/dist/ /var/www/
 
 # Schritt 1: Baue das Storybook-Projekt
 FROM node:20-alpine AS storybook
@@ -69,7 +55,7 @@ RUN yarn build-storybook
 FROM nginx:stable-alpine as storybook-http
 
 # Kopiere die statischen Dateien in /var/www/html
-COPY --from=storybook /app/storybook-static /var/www/html
+COPY --from=storybook /app/storybook-static  /usr/share/nginx/html
 
 # Exponiere Port 80 für Nginx
 EXPOSE 80
