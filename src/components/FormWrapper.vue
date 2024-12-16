@@ -1,14 +1,15 @@
 <template>
     <iframe
+        v-if="loaded"
         @load="messageThatIframeIsLoaded"
         id="iframeElement"
         ref="iframeElement"
-        :src="props.src"
+        :src="src"
         style="width: 100%; border: none"
         :style="[iframeHeight, bordered]"></iframe>
 </template>
 <script setup lang="ts">
-    import { computed } from 'vue';
+import { computed } from 'vue';
     import { onBeforeMount } from 'vue';
     import { Ref } from 'vue';
     import { ref } from 'vue';
@@ -17,6 +18,8 @@
         src: string;
         bordered: boolean | undefined;
     }>();
+    const loaded = ref(false)
+    const src = ref(props.src) 
     const height = ref('1000px');
     const iframeElement: Ref<HTMLIFrameElement | null> = ref(null);
     const handleIframeMessage = (event: any) => {
@@ -48,6 +51,14 @@
                 }
                 window._mtm?.push(event.data.data);
             }
+            if (event.data.type === 'payment-done') {
+                const url = new URL(window.location.href) 
+                url.searchParams.delete('payment_id')
+                url.searchParams.delete('redirect_status')
+                url.searchParams.delete('payment_intent')
+                url.searchParams.delete('payment_intent_client_secret')
+                window.history.replaceState(null, '',url)
+            }
         }
     };
     const messageThatIframeIsLoaded = () => {
@@ -66,7 +77,36 @@
         }
         return '';
     });
+
+    const handleSrc = () => {
+        const url = new URL(src.value)
+        url.searchParams.append('location', window.location.href)
+        src.value = url.toString()
+    }
+
+    const handleTwintQuery = () => {
+        const queryParams = new URL(window.location.href).searchParams
+        const payment_id = queryParams.get('payment_id')
+        const payment_intent = queryParams.get('payment_intent')
+        const redirect_status = queryParams.get('redirect_status')
+        const url = new URL(src.value)
+        if (payment_id !== null) {
+            url.searchParams.append('payment_id', payment_id)
+        }
+        if (payment_intent !== null) {
+            url.searchParams.append('payment_intent', payment_intent)
+        }
+        if (redirect_status !== null) {
+
+        url.searchParams.append('redirect_status', redirect_status)
+        }
+        src.value = url.toString()
+        console.log(payment_id, payment_intent, redirect_status)
+    }
     onBeforeMount(() => {
         parent.addEventListener('message', handleIframeMessage, false);
+        handleSrc()
+        handleTwintQuery()
+        loaded.value = true
     });
 </script>
