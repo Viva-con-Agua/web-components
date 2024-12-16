@@ -100,7 +100,6 @@
             url.searchParams.append('redirect_status', redirect_status);
         }
         src.value = url.toString();
-        console.log(payment_id, payment_intent, redirect_status);
     };
     onBeforeMount(() => {
         parent.addEventListener('message', handleIframeMessage, false);
