@@ -39,6 +39,7 @@
         "@vuelidate/validators": "^2.0.4",
         "axios": "^1.7.7",
         "css-loader": "^7.1.2",
+        "pdfjs-dist": "^5.1.91",
         "pinia": "^2.2.4",
         "pinia-plugin-persistedstate": "^4.1.1",
         "sass-loader": "^16.0.2",
