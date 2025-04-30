@@ -30,7 +30,7 @@
         top: 80%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         background-color: white;
         font-size: 32px;
         text-decoration: none;
@@ -44,7 +44,6 @@
         font-weight: 700;
         overflow: hidden;
         border-radius: 50%;
-        border: 2px;
         border-color: $primary-dark;
         padding-left: 24px;
         padding-right: 24px;
