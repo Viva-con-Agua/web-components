@@ -3,12 +3,13 @@
         <a target="_blank" :href="props.downloadLink">
             <div class="downloadLink">
                 <img :src="props.displayImage" height="310" />
-                <div class="downloadLabel">⤓</div>
+                <img :src="imgUrl" class="downloadLabel" />
             </div>
         </a>
     </div>
 </template>
 <script setup lang="ts">
+    import imgUrl from '../assets/img/Download_Symbol.png';
     const props = defineProps<{
         downloadLink: string;
         displayImage: string;
@@ -30,24 +31,17 @@
         top: 80%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid transparent;
         background-color: white;
-        font-size: 32px;
+        font-size: 30px;
         text-decoration: none;
         font-family: 'roboto_slab';
         font-style: normal;
         letter-spacing: 0px;
-        line-height: 24px;
+        line-height: 20px;
         color: $primary-dark;
         box-sizing: border-box;
-        border-radius: 15px;
         font-weight: 700;
         overflow: hidden;
         border-radius: 50%;
-        border-color: $primary-dark;
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-top: 16px;
-        padding-bottom: 16px;
     }
 </style>
