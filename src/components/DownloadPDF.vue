@@ -3,7 +3,7 @@
         <a target="_blank" :href="props.downloadLink">
             <div class="downloadLink">
                 <img :src="props.displayImage" height="310" />
-                <img :src="imgUrl" class="downloadLabel" />
+                <img :src="imgURL" class="downloadLabel" />
             </div>
         </a>
     </div>
@@ -14,6 +14,7 @@
         downloadLink: string;
         displayImage: string;
     }>();
+    const imgURL = import.meta.env.VCA_PUBLIC_BASE_URL + imgUrl;
 
     // PDF URL, die hier festgelegt wird (kann auch als Prop übergeben werden)
     //const pdfUrl: string = props.downloadLink;
