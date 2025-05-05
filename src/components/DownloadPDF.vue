@@ -9,7 +9,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    import imgUrl from '../assets/img/Download_Symbol.png';
+    import imgUrl from '@/assets/img/Download_Symbol.png';
     const props = defineProps<{
         downloadLink: string;
         displayImage: string;
