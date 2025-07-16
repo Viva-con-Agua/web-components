@@ -49,6 +49,9 @@
             if (props.color == ColorType.dark) {
                 return 'bg-dark';
             }
+            if (props.color == ColorType.aguaPink) {
+                return 'agua-pink';
+            }
         }
         return '';
     });

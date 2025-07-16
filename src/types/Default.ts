@@ -29,4 +29,5 @@ export enum ColorType {
     default = 'default',
     dark = 'dark',
     orange = 'orange',
+    aguaPink = 'agua-pink',
 }
