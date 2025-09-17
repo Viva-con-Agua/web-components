@@ -1,7 +1,7 @@
 import { defineCustomElement } from 'vue';
 import copyButton from './components/CopyButton.vue';
 import downloadContainer from './components/DownloadContainer.vue';
-import downloadPDF from './components/DownloadPDF.vue';
+import downloadPDF from './components/DownloadPdf.vue';
 import formWrapper from './components/FormWrapper.vue';
 import linkButton from './components/LinkButton.vue';
 
