@@ -14,7 +14,10 @@
         downloadLink: string;
         displayImage: string;
     }>();
-    const imgURL = import.meta.env.VCA_PUBLIC_BASE_URL + imgUrl;
+    const imgURLPrefix = import.meta.env.VCA_PUBLIC_BASE_URL
+        ? import.meta.env.VCA_PUBLIC_BASE_URL
+        : '';
+    const imgURL = imgURLPrefix + imgUrl;
 
     // PDF URL, die hier festgelegt wird (kann auch als Prop übergeben werden)
     //const pdfUrl: string = props.downloadLink;
