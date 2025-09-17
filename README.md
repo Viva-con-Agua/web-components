@@ -14,6 +14,10 @@ The components only need to be installed in the head of the page. They can then 
     </head>
 ```
 
+## Components
+
+You can find a documentary about the elements in the [storybook](https://storybook-components.vivaconagua.org/?path=/docs/example-linkbutton--docs).
+
 ## Develop
 
 First create a normal component under `src/components`. The file should have the extension `.ce.vue`. Then the components must be defined in `src/main.ts` as `customElement`.
@@ -37,49 +41,44 @@ The service can be reached at [http://localhost:8020](http://localhost:8020) and
  <script type="module" src="http://localhost:8020/assets/index.js"></script>
 ```
 
-## Components
+## Storybook
 
-### CopyButton
-
-Copies the value in `copy_value` to the clipboard.
+In order for the sample code to be displayed correctly in the storybook, the name of the tags must be adjusted. The following example is from the `<link-button>`
 
 ```
-        <!--
-            label: Default button label.
-            copy_label: Label after copy the copy_value.
-            copy_value: Value what is copied.
-            countdown: Seconds until the button resets. Default 5 sec.
-            color: Button color, `orange`, `dark` and `default`
-        -->
-        <copy-button
-          label="test"
-          copy_label="Kopiert!"
-          copy_value="blabla"
-          countdown="5">
-        </copy-button>
+export default {
+    title: 'Example/LinkButton',
+    argTypes: {
+        label: { control: 'text' },
+        to: { control: 'text' },
+        utm_source: { control: 'text' },
+        utm_medium: { control: 'text' },
+        utm_campaign: { control: 'text' },
+        color: {
+            options: ['default', 'dark', 'orange'],
+            control: {
+                type: 'select',
+            },
+        },
+    },
+    parameters: {
+        docs: {
+            source: {
+                language: 'html',
+                transform: (src: string): string => {
+                    // Hier wird der Source-Code angepasst, um den Kebab-Case-Tag zu verwenden
+                    return src
+                        .replace(/<LinkButton\s*\/>/g, '<link-button></link-button>') // Selbstschließendes Tag
+                        .replace(/<LinkButton\s*\/>/g, '<link-button></link-button>') // Selbstschließendes Tag
+                        .replace(/<LinkButton/g, '<link-button') // Öffnendes Tag
+                        .replace(/\/>/g, '></link-button>') // Schließendes Tag
+                        .replace(/<template>/g, '') // Entfernt <template>
+                        .replace(/<\/template>/g, '') // Entfernt </template>
+                        .replace(/<link-button/g, '<link-button') // Entfernt alle anderen Tags
+                        .replace(/<\/link-button>/g, '</link-button>'); // Schließende Tags
+                },
+            },
+        },
+    },
+};
 ```
-
-### LinkButton
-
-Simple linking. The campaign information is automatically attached.
-
-```
-        <!--
-            label: Default button label.
-            to: Path or Link.
-            utm_campaign: Campaign name for tracking.
-            utm_medium: Tracking parameter.
-            utm_source: Tracking parameter.
-            color: Button color, `orange`, `dark` and `default`
-        -->
-        <link-button
-            label="Jetzt Spenden!"
-            to="https://vivaconagua.org/spende/"
-            utm_campaign="dev"
-            utm_source="localhost"
-            utm_medium="button"
-            color="orange">
-        </link-button>
-```
-
-[More](https://storybook-components.vivaconagua.org/?path=/docs/example-linkbutton--docs)
