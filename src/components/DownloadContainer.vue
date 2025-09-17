@@ -10,11 +10,5 @@
     // Referenz auf das Canvas-Element
 </script>
 <style lang="scss">
-    .downloadContainer {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5em;
-        align-content: center;
-        justify-content: center;
-    }
+    @import 'DownloadContainer.scss';
 </style>
